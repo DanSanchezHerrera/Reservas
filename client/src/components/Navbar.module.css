@@ -1,0 +1,81 @@
+.navbar {
+    height: 100px;
+    background-color: #DFBA0D;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    height: 59px;
+    margin-right: 20px; 
+}
+
+h1 {
+    font-family: "Lato", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+    color: #173F95;
+    margin: 0;
+    font-size: 25px;
+    text-align: center;
+}
+
+.lista{
+    margin-left: 20px;
+}
+
+.link {
+    list-style: none;
+    margin: 0; 
+    padding: 0; 
+    display: flex;
+    align-items: center;
+}
+
+.link a {
+    text-decoration: none;
+    color: #5271B3;
+    margin-right: 20px;
+}
+
+.link a:hover {
+    color: white;
+}
+
+.box {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 20px; 
+}
+
+.usuario {
+    height: 49px;
+    margin-right: 10px;
+}
+
+.link2 {
+    list-style: none;
+    margin: 0; 
+    padding: 0; 
+    display: flex;
+    align-items: center;
+}
+
+.link2 a {
+    text-decoration: none;
+    color: #5271B3;
+    font-weight: 600;
+    margin-right: 20px;
+}
+
+.link2 a:hover {
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}

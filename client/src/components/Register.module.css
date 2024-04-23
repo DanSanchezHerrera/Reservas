@@ -1,0 +1,23 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    padding-left: 300px;
+    padding-right: 300px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top: 20px;
+}
+
+.btn{
+    margin-top: 20px;
+    border: none;
+    background-color: #102C68;
+    color: white;
+    border-radius: 5px;
+    height: 30px;
+    box-shadow: 2px 2px 2px black;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
