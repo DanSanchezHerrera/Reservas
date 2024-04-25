@@ -19,15 +19,18 @@ const ReservePage = () => {
     useEffect(() => {
         const fetchReservations = async () => {
             try {
-                const res = await axios.get("http://localhost:8000/api/reservations/get")
-                const currentReservations = res.data
-                setReservations(currentReservations)
+                // Asegúrate de que se incluya { withCredentials: true } para enviar las cookies de autenticación
+                const res = await axios.get("http://localhost:8000/api/reservations", { withCredentials: true });
+                const currentReservations = res.data.reservations;
+                console.log("reservas",currentReservations);
+                setReservations(currentReservations);
             } catch (err) {
-                console.log(err)
+                console.log(err);
             }
-        }
+        };
         fetchReservations();
-    }, [])
+    }, []);
+    
     
     //-----------------------------------FUNCTIONS FOR THE FORM-------------------------------------------------------------------
 
@@ -40,10 +43,12 @@ const ReservePage = () => {
             "date": date,
             "hour": hour.hour(),
             "lane": lane
-        })
+        } , {withCredentials: true})
         .then(res => {
             console.log(res)
-            setReservations(prevReservations => [...prevReservations, res.data]);
+            // setReservations(prevReservations => [...prevReservations, res.data]);
+            setReservations(prevReservations => [...prevReservations, res.data.reservation]);
+
         }) 
         .catch(err => console.log(err))
     }
@@ -56,7 +61,7 @@ const ReservePage = () => {
 
     // Function to handle the deletion of a reservation
     const handleDelete = (id) => {
-        axios.delete(`http://localhost:8000/api/reservations/delete/${id}`)
+        axios.delete(`http://localhost:8000/api/reservations/delete/${id}`, {withCredentials: true})
         .then(res => {
             console.log(res)
             setReservations(prevReservations => prevReservations.filter(reservation => reservation._id !== id));

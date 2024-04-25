@@ -13,36 +13,6 @@ module.exports.register = (req, res) => {
     .catch(err => res.json(err));
 };
 
-
-// module.exports.login = (req, res) => {
-//   User.findOne({ email: req.body.email })
-//     .then(user => {
-//       if (user === null) {
-//         res.json({ msg: "invalid login attempt" });
-//       } else {
-//         bcrypt
-//           .compare(req.body.password, user.password)
-//           .then(passwordIsValid => {
-//             if (passwordIsValid) {
-//               const newJWT = jwt.sign({
-//                     _id: user._id
-//               })
-//               const secret = "mysecret";
-//               res
-//                 .cookie("usertoken", newJWT, secret, {
-//                   httpOnly: true
-//                 })
-//                 .json({ msg: "success!" });
-//             } else {
-//               res.json({ msg: "invalid login attempt" });
-//             }
-//           })
-//           .catch(err => res.json({ msg: "invalid login attempt" }));
-//       }
-//     })
-//     .catch(err => res.json(err));
-// };
-
 module.exports.login = (req, res) => {
   User.findOne({ email: req.body.email })
     .then(user => {
@@ -67,10 +37,6 @@ module.exports.login = (req, res) => {
     })
     .catch(err => res.json(err));
 };
-
-
-
-
 
 module.exports.findAllUsers = (req, res) => {
   User.find()

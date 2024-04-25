@@ -1,5 +1,6 @@
 import ReservePage from './pages/ReservePage'
 import UpdatePage from './pages/UpdatePage'
+import Register from './components/Register'
 import Home from './pages/Home'
 import Navbar from './components/Navbar'
 import SignIn from './pages/SignIn.jsx'
@@ -21,7 +22,8 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/reserve" element={<ReservePage />} />
           <Route path="/update" element={<UpdatePage />} />
-          <Route path="/register" element={<SignIn /> } />
+          <Route path="/register" element={<Register /> } />
+          <Route path="/login" element={<SignIn /> } />
           
         </Routes>
       </BrowserRouter>

@@ -1,11 +1,19 @@
 const Reservation = require("../models/reservation.model");
 
+// module.exports.findAllReservations = (req, res) => {
+//   Reservation.find()
+//     .populate('user')
+//     .then(allReservations => res.json({ reservations: allReservations }))
+//     .catch(err => res.status(400).json(err));
+// };
+
 module.exports.findAllReservations = (req, res) => {
-  Reservation.find()
-    .populate('user')
-    .then(allReservations => res.json({ reservations: allReservations }))
-    .catch(err => res.status(400).json(err));
+  Reservation.find({ user: req.userId })
+      .populate('user') // Asegúrate de que esto es necesario, podría ser una filtración de datos
+      .then(allReservations => res.json({ reservations: allReservations }))
+      .catch(err => res.status(400).json(err));
 };
+
 
 module.exports.findOneSingleReservation = (req, res) => {
   Reservation.findById(req.params.id)

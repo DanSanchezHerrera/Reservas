@@ -7,11 +7,11 @@ const ReservationSchema = new mongoose.Schema(
       type: Date,
       required: true,
     },
-    time: {
+    hour: {
       type: String,
       required: true,
     },
-    courtNumber: {
+    lane: {
       type: Number,
       required: true,
     },

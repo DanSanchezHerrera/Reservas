@@ -10,7 +10,7 @@ app.use(express.json(), express.urlencoded({ extended: true }));
 
 app.use(cookieParser());
 
-app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 
 // This is where we import the Users routes function from our user.routes.js file
 const AllMyUserRoutes = require("./routes/user.routes");

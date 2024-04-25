@@ -6,7 +6,6 @@ const SignIn = () => {
     <>
       <div className='row'>
         <div className='col'></div>
-        <Register></Register>
       </div>
       <div className='col'></div>
       <Login></Login>

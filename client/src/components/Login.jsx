@@ -51,7 +51,7 @@ const Login = () => {
                     <label>Contraseña: </label>
                     <input type="password" className="form-control" name="password" onChange={changeHandler}/>
                 </div>
-                <button type="submit" className={styles.btn}>Login</button>
+                <input type="submit" value="Login" className={styles.btn} />
             </form>
         </div>
     )

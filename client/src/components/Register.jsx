@@ -1,11 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
 import styles from './Register.module.css'
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
 
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
 
 
     const [formInfo, setFormInfo] = useState({
@@ -31,6 +31,7 @@ const Register = () => {
         axios.post("http://localhost:8000/api/register", formInfo, {withCredentials: true})
             .then(res => {
                 console.log(res)
+                navigate("/dashboard")
                 if(res.data.errors){
                     setErrors(res.data.errors)
                 } else {
@@ -47,7 +48,7 @@ const Register = () => {
     return (
         <div className={styles.container}>
             <h1>Registrarse</h1>
-            <form>
+            <form onSubmit={register}>
                 <div className="form-group">
                     <label>Primer Nombre: </label>
                     <input type="text" className="form-control" name="firstName" onChange={changeHandler}/>
@@ -73,7 +74,7 @@ const Register = () => {
                     <input type="password" className="form-control" name="confirmPassword" onChange={changeHandler}/>
                     {errors.confirmPassword ? <p>{errors.confirmPassword.message}</p> : ""}
                 </div>
-                <button type="button" onClick={register} className={styles.btn}>Registrar</button>
+                <input type="submit" value="Registrar" className={styles.btn} />
             </form>
         </div>
     )

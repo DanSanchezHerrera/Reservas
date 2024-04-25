@@ -30,11 +30,7 @@ const Home = () => {
     return (
     <ThemeProvider theme={theme}>
     <div className={styles.container1}>
-        <div className={styles.reserva}>
-            <Button variant="contained" endIcon={<CalendarMonthIcon />} style={{ width: '200px', height: '50px' }}>
-                <Link to="/add">Reserva Aquí</Link>
-            </Button>
-        </div>
+        
 
         <div className={styles.box}>
         <Carousel activeIndex={index} onSelect={handleSelect}>
