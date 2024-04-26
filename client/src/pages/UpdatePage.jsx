@@ -25,7 +25,7 @@ const UpdatePage = () => {
             "date": date,
             "hour": hour.hour(),
             "lane": lane
-        })
+        }, {withCredentials: true})
             .then(res => console.log(res))
             .catch(err => console.log(err))
     }
