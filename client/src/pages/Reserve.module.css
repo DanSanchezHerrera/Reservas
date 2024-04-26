@@ -1,5 +1,6 @@
-.container2{
+.boxes{
     display: flex;
     flex-direction: column;
     padding: 70px;
+    margin-top: 50px;
 }

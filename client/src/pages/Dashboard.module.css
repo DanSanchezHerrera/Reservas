@@ -1,0 +1,47 @@
+.reserva{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 70px;
+    padding-right: 70px;
+}
+
+.reservationTable{
+    background-color: #DFBA0D;
+    padding: 20px;
+}
+
+.reservationTable th, td {
+    border: 1px solid #3357A3;
+    padding: 8px; 
+    text-align: center; 
+}
+
+.reservationTable th {
+    background-color: #F4D33A;
+}
+
+.top{
+    color: #3357A3;
+    text-align: center;
+}
+
+.actionbutton{
+    background-color: #3357A3;
+    color: white;
+    margin-right: 10px;
+    margin-left: 10px;
+    height: 40px;
+    border-radius: 5px;
+}
+
+.actionbutton:hover {
+    background-color: #7893CD;
+}

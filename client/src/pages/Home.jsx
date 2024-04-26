@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from './Home.module.css';
+import Navbar from '../components/Navbar.jsx'
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Carousel, CarouselItem, CarouselControl, CarouselIndicators, CarouselCaption } from 'react-bootstrap';
@@ -29,6 +30,7 @@ const Home = () => {
 
     return (
     <ThemeProvider theme={theme}>
+    <Navbar />
     <div className={styles.container1}>
         
 

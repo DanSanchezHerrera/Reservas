@@ -4,6 +4,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { ReservationsContext } from "../contexts/ReservationsContext";
 import styles from './Reserve.module.css'
+import Navbar2 from "../components/Navbar2";
 
 const UpdatePage = () => {
 
@@ -30,8 +31,9 @@ const UpdatePage = () => {
     }
     
     return (
-        <div className={styles.container2}>
-        <FormComponent prevReservation={reservation} prevReservations={reservations} handleSubmit={handleSubmit}/>
+        <div>
+            <Navbar2 />
+            <FormComponent prevReservation={reservation} prevReservations={reservations} handleSubmit={handleSubmit}/>
         </div>
     )
 }

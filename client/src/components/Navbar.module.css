@@ -79,3 +79,17 @@ a {
     text-decoration: none;
     color: white;
 }
+
+.btn{
+    background-color: #173F95;
+    color: white;
+    border-radius: 5px;
+    margin-left: 10px;
+    box-shadow: 2px 1px 1px #07225D;
+    height: 45px;
+    width: 130px;
+}
+
+.btn:hover {
+    background-color: #7893CD;
+}

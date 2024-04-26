@@ -1,79 +1,109 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import styles from './Home.module.css';
+import styles from './Dashboard.module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from '@mui/material/Button';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import { useNavigate } from 'react-router-dom';
+import Navbar2 from '../components/Navbar2.jsx';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+      primary: {
+      main: '#173F95'
+  },  
+  },
+});
+
 
 const Dashboard = () => {
-  const [name, setName] = useState(null)
+  const [name, setName] = useState(null);
   const [reservations, setReservations] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState('');
-  const navigate = useNavigate()
+
+  const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get("http://localhost:8000/api/users/loggedin", {withCredentials: true})
+    axios.get("http://localhost:8000/api/users/loggedin", { withCredentials: true })
         .then(res => {
-            console.log(res)
-            setName(res.data.firstName)
+            setName(res.data.firstName);
         })
         .catch(err => {
-            console.log(err)
-            navigate("/")
-        })
-}, [])
+            navigate("/");
+        });
+  }, []);
 
   useEffect(() => {
-    axios.get("http://localhost:8000/api/reservations", {withCredentials: true})
+    axios.get("http://localhost:8000/api/reservations", { withCredentials: true })
       .then(res => {
-        setReservations(res.data.reservations);  // Asegúrate de usar la propiedad correcta
-        console.log("reservas", res.data.reservations);
-        setLoaded(true);
-        setError('');
+        if (res.data && res.data.reservations) {
+          setReservations(res.data.reservations);
+          setLoaded(true);
+        }
       })
       .catch(err => {
-        console.log('Error fetching data: ', err);
-        setReservations([]);  // Establece reservaciones a un arreglo vacío en caso de error
         setError(err.message);
+        setLoaded(true);
       });
   }, []);
 
-  
+  const handleDelete = (id) => {
+    axios.delete(`http://localhost:8000/api/reservations/delete/${id}`, { withCredentials: true })
+      .then(() => {
+        setReservations(reservations.filter(reservation => reservation._id !== id));
+      })
+      .catch(err => console.log(err));
+  };
 
-  const logout = () => {
-    axios.get("http://localhost:8000/api/users/logout", {withCredentials: true})
-        .then(res => {
-            console.log(res)
-            navigate("/")
-        })
-        .catch(err => console.log(err))
+  const handleUpdateClick = (id) => {
+    navigate(`/update/${id}`);
+  };
 
-}
+  const handleClick = () => {
+    navigate('/reserve');
+  };
 
   return (
+    <ThemeProvider theme={theme}>
     <div>
-      <h2>Hola {name}!</h2>
+      <Navbar2 />
       <div className={styles.reserva}>
-                 <Button variant="contained" endIcon={<CalendarMonthIcon />} style={{ width: '200px', height: '50px' }}>
-                     <Link to="/reserve">Reserva Aquí</Link>
-                 </Button>
-             </div>
+        <Button onClick={handleClick} 
+        variant="contained" 
+        endIcon={<CalendarMonthIcon />} 
+        style={{ width: '200px', height: '50px' }}>
+          Reserva Aquí
+        </Button>
+      </div>
       {loaded ? (
         reservations.length > 0 ? (
-          <div>
+          <div className={styles.box}>
             <h1>Lista de Reservas</h1>
-            <ul>
-              {reservations.map(reservation => (
-                <li key={reservation._id}>
-                  <p>Fecha: {new Date(reservation.date).toLocaleDateString()}</p>
-                  <p>Hora: {reservation.hour}:00 </p>
-                  <p>Pista: {reservation.lane}</p>
-                </li>
-              ))}
-            </ul>
+            <table className={styles.reservationTable}>
+              <thead>
+                <tr>
+                  <th>Fecha</th>
+                  <th>Hora</th>
+                  <th>Pista</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                {reservations.map(reservation => (
+                  <tr key={reservation._id}>
+                    <td>{new Date(reservation.date).toLocaleDateString()}</td>
+                    <td>{reservation.hour}:00</td>
+                    <td>{reservation.lane}</td>
+                    <td>
+                      <button onClick={() => handleUpdateClick(reservation._id)} className={styles.actionbutton}>Modificar</button>
+                      <button onClick={() => handleDelete(reservation._id)} className={styles.actionbutton}>Eliminar</button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         ) : (
           <p>Actualmente no posees ninguna reserva.</p>
@@ -82,10 +112,8 @@ const Dashboard = () => {
         <p>Cargando...</p>
       )}
       {error && <p>Error: {error}</p>}
-      <button onClick={logout}>Logout</button>
-
     </div>
-    
+    </ThemeProvider>
   );
 };
 

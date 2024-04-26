@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
 
 const ReservationSchema = new mongoose.Schema(
   {
@@ -18,7 +17,7 @@ const ReservationSchema = new mongoose.Schema(
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'
-    },
+    }
   },
   { timestamps: true }
 );
